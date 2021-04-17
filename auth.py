@@ -122,7 +122,7 @@ def withdrawalOperation(user):
     get_current_balance = user[4]
     print(get_current_balance)
  
-    selectedOption = int(input('How much would you like to withdraw?'))
+    selectedOption = int(input('How much would you like to withdraw? \n'))
     # print('How much would you like to withdraw?')
     print('A. $20')
     print('B. $50')
@@ -163,22 +163,58 @@ def withdrawalOperation(user):
     
     return bankOperation(user)
 
-#this is a new change
-# if(selectedOption == 3):
+    if(selectedOption == 3):
 
-#     logout()
-# elif(selectedOption == 4):
+         logout()
+    elif(selectedOption == 4):
 
-#     exit()
-# else:
+        exit()
+    else:
 
-    # print("Invalid option selected") 
-    # bankOperation(user)               
+        print("Invalid option selected") 
+        bankOperation(user)               
 
 
-def depositOperation():
-    print("Deposit Operations")
-    return bankOperation()
+def depositOperation(user):
+
+    get_current_balance = user[4]
+    print(get_current_balance)
+    
+    selectedOption = int(input("How much would you like to deposit? \n"))
+    #print("How much would you like to deposit?")
+    print('A. $20')
+    print('B. $50')
+    print('C. $100')
+    print('D. $250')
+    print('E. Enter Amount')
+
+    if(selectedOption == 20):
+        get_current_balance = get_current_balance + 20 
+        user[4] = get_current_balance
+        print("Your current balance is now {}".format(get_current_balance))
+        
+    elif(selectedOption == 50):
+        get_current_balance = get_current_balance + 50
+        user[4] = get_current_balance
+        print("Your current balance is now {}".format(get_current_balance))
+        
+    elif(selectedOption == 100):
+        get_current_balance = get_current_balance + 100
+        user[4] = get_current_balance
+        print("Your current balance is now {}".format(get_current_balance))
+            
+    elif(selectedOption == 250):
+        get_current_balance = get_current_balance + 250 
+        user[4] = get_current_balance
+        print("Your current balance is now {}".format(get_current_balance))
+            
+    elif(selectedOption == "E"):
+        amount_to_deposit = int(input("Enter amount to deposit"))
+        get_current_balance = get_current_balance + amount_to_deposit
+        user[4] = get_current_balance
+        print("Your current balance is now {}".format(get_current_balance))
+
+    return bankOperation(user)
 
 def generationAccountNumber():
 
@@ -191,3 +227,5 @@ def logout():
 
 
 init()
+
+## Can't seem to get the deposit function to work like the withdrawal function
