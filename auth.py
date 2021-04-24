@@ -163,17 +163,6 @@ def withdrawalOperation(user):
     
     return bankOperation(user)
 
-    if(selectedOption == 3):
-
-         logout()
-    elif(selectedOption == 4):
-
-        exit()
-    else:
-
-        print("Invalid option selected") 
-        bankOperation(user)               
-
 
 def depositOperation(user):
 
