@@ -29,10 +29,12 @@ today = date.today()
 import random
 import validation
 import database
+from getpass import getpass
 
-#database = {
+
+# database = {
 #    "1234567890": ["Bill", "Gate", "email@email.com", "password", 1000]
-#}  # dictionary
+# }  # dictionary
 
 
 def init():
@@ -55,7 +57,7 @@ def bank_operation(user_details):
     pass
 
 
-def login(user_details=None):
+def login():
     print("********** Login ***********")
 
     account_number_from_user = input("What is your account number? \n")
@@ -63,12 +65,12 @@ def login(user_details=None):
     is_valid_account_number = validation.account_number_validation(account_number_from_user)
 
     if is_valid_account_number:
-        password = input("What is your password? \n")
+        password = getpass("What is your password? \n")
+        user = database.authenticated_user(account_number_from_user, password)
 
-        for account_number, user_details in database.items():
-            if account_number == int(account_number_from_user):
-                if user_details[3] == password:
-                    bank_operation(user_details)
+        if user:
+            auth_session_created = database.create_auth_session(account_number_from_user)
+            bank_operation(user, account_number_from_user)
 
         print('Invalid account or password')
         login()
@@ -82,7 +84,7 @@ def generation_account_number():
     pass
 
 
-def register(account_number):
+def register():
     print("******* Register ******")
 
     email = input("What is your email address? \n")
