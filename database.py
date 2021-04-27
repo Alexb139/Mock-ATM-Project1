@@ -11,12 +11,13 @@ import os
 user_db_path = "data/user_record/"
 
 
-def create(account_number, user_details):
+def create(user_account_number, user_details):
     completion_state = False
+    f = None
 
     try:
 
-        f = open(user_db_path + str(account_number) + ".txt", "x")
+        f = open(user_db_path + str(user_account_number) + ".txt", "x")
 
     except FileExistsError:
 
@@ -44,9 +45,22 @@ def create(account_number, user_details):
     # if saving to file fails, then delete created file
 
     def read(user_account_number):
-        print("read user record")
+
         # find user with account number
         # fetch content of the file
+        try:
+            f = open(user_db_path + str(user_account_number) + ".txt", "r")
+
+        except FileNotFoundError:
+
+            print("User not found")
+
+        except FileExistsError:
+
+            print("User doesn't exist")
+
+        finally:
+            return f.readline()
 
     def update(user_account_number):
         print("update user record")
@@ -80,10 +94,10 @@ def delete(user_account_number):
             # return true
 
 
-def find(user_account_number):
-    print("find user")
-    # find user record in the data folder
+# def does_email_exist(account_number, email):
+    print(os.listdir(user_db_path))
 
 
-create(1234567890, ["Bill", "Gate", "email@email.com", "password", 1000])
-delete()
+# does_email_exist(1234567890, "email@email.com")
+# create(1234567890, ["Bill", "Gate", "email@email.com", "password", 1000])
+# delete()
